@@ -1,0 +1,15 @@
+[workspace]
+members = [
+    "shmx",
+    "shmw",
+    "windows_targets",
+]
+
+[profile.release]
+opt-level = 3
+split-debuginfo = "packed"
+strip = "symbols"
+lto = true
+panic = "abort"
+codegen-units = 1
+

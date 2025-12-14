@@ -1,0 +1,39 @@
+name: Build shim crates
+
+on:
+  push:
+    branches:
+      - runw
+  pull_request:
+    branches:
+      - runw
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2025
+    defaults:
+      run:
+        shell: bash
+        working-directory: shim
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build, strip, and prepare binaries
+        run: |
+          RUSTFLAGS="-C target-cpu=x86-64-v3" cargo build --workspace --release
+
+          strip --strip-all  target/release/shmx.exe
+          strip --strip-all  target/release/shmw.exe
+
+          mkdir -p release_artifacts
+          cp target/release/shmx.exe release_artifacts/shmx.exe
+          cp target/release/shmw.exe release_artifacts/shmw.exe
+
+      - name: Upload binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: shim
+          path: shim/release_artifacts/*
