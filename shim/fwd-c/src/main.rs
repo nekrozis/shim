@@ -3,7 +3,14 @@ use std::fs;
 use std::io;
 use std::process::Command;
 
+mod ffi;
+use ffi::*;
+
 fn main() -> io::Result<()> {
+    unsafe {
+        SetConsoleCtrlHandler(None, TRUE);
+    }
+
     let resolved = {
         let exe = env::current_exe()?;
         let mut target = fs::read_link(&exe)?;

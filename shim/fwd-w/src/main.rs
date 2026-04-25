@@ -6,8 +6,8 @@ use std::io;
 use std::os::windows::io::AsRawHandle;
 use std::process::{Command, Stdio};
 
-mod file_type;
-use file_type::*;
+mod ffi;
+use ffi::*;
 
 fn main() -> io::Result<()> {
     // Resolve target executable first

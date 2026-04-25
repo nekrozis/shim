@@ -1,12 +1,12 @@
 name: Build shim crates
 
 on:
-  push:
-    branches:
-      - runw
-  pull_request:
-    branches:
-      - runw
+  # push:
+  #   branches:
+  #     - runw
+  # pull_request:
+  #   branches:
+  #     - runw
   workflow_dispatch:
 
 jobs:
@@ -25,12 +25,12 @@ jobs:
         run: |
           RUSTFLAGS="-C target-cpu=x86-64-v3" cargo build --workspace --release
 
-          strip --strip-all  target/release/shmx.exe
-          strip --strip-all  target/release/shmw.exe
+          strip --strip-all  target/release/fwd-c.exe
+          strip --strip-all  target/release/fwd-w.exe
 
           mkdir -p release_artifacts
-          cp target/release/shmx.exe release_artifacts/shmx.exe
-          cp target/release/shmw.exe release_artifacts/shmw.exe
+          cp target/release/shmx.exe release_artifacts/fwd-c.exe
+          cp target/release/shmw.exe release_artifacts/fwd-w.exe
 
       - name: Upload binaries
         uses: actions/upload-artifact@v4

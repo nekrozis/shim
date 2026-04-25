@@ -1,7 +1,7 @@
 [workspace]
 members = [
-    "shmx",
-    "shmw",
+    "fwd-c",
+    "fwd-w",
     "windows_targets",
 ]
 

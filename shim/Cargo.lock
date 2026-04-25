@@ -3,15 +3,18 @@
 version = 4
 
 [[package]]
-name = "shmw"
+name = "fwd-c"
 version = "0.1.1"
 dependencies = [
  "windows-targets",
 ]
 
 [[package]]
-name = "shmx"
+name = "fwd-w"
 version = "0.1.1"
+dependencies = [
+ "windows-targets",
+]
 
 [[package]]
 name = "windows-targets"
