@@ -29,8 +29,8 @@ jobs:
           strip --strip-all  target/release/fwd-w.exe
 
           mkdir -p release_artifacts
-          cp target/release/shmx.exe release_artifacts/fwd-c.exe
-          cp target/release/shmw.exe release_artifacts/fwd-w.exe
+          cp target/release/fwd-c.exe release_artifacts/fwd-c.exe
+          cp target/release/fwd-w.exe release_artifacts/fwd-w.exe
 
       - name: Upload binaries
         uses: actions/upload-artifact@v4
